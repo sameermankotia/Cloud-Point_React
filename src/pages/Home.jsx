@@ -3,15 +3,18 @@ import Weather from "../components/Weather";
 import getDate from "../utils/getDate";
 
 const HomePage = () => {
-  const { units, hourly, current_weather } = useOutletContext();
+  const { units, hourly, current_weather, timezone } = useOutletContext();
 
   const { hourlyWeatherCodes, hourlyTimes, hourlyTemperatures } = hourly;
 
+  // Create a date object for the city's timezone
+  const cityDate = new Date(new Date().toLocaleString("en-US", { timeZone: timezone }));
+
   const [date, currentHour] = [
     "Today ".concat(
-      getDate(new Date(), { hour: "numeric", minute: "numeric" })
+      getDate(cityDate, { hour: "numeric", minute: "numeric", timeZone: timezone })
     ),
-    Number(getDate(new Date(), { hour: "numeric", hourCycle: "h23" })),
+    Number(getDate(cityDate, { hour: "numeric", hourCycle: "h23", timeZone: timezone })),
   ];
 
   const index = hourlyTimes.findIndex(
