@@ -51,6 +51,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 Created by Sameer Mankotia
 
-## License
-
-[Add your chosen license here]
